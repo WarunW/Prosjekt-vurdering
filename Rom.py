@@ -3,7 +3,7 @@ class Rom:
         self._navn = navn
         self._beskrivelse = beskrivelse
         self._gjenstander = []
-        self._fiende = 
+        self._fiende = None
         self.utganger = []   
 
 
