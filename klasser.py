@@ -9,16 +9,14 @@ class Item:
 class AccessCard(Item):
     def __init__(self):
         super().__init__("kodekort", "Et kodekort som kan åpne bankhvelvet.")
-
+        
     def useItem(self, spiller):
-        rom = spiller._rom
-        if rom is None:
-            print("Du står ikke ved noen dør.")
-            return
-        if rom.erLåst():
-            rom.låsOpp()
-        else:
-            print("Det er ingen låst bankdør her.")
+        for retning, rom in spiller._rom.utganger:
+            if retning == "hvelv" and rom.erLåst():
+                rom.låsOpp()
+                print("Du bruker kodekortet og låser opp hvelvdøren.")
+                return
+        print("Det er ingen låst bankdør her.")
 
 class EnergyBar(Item):
     def __init__(self, healAmount: int = 3):
@@ -70,7 +68,6 @@ class Spiller:
 
     def settRom(self, rom):
         self._rom = rom
-        rom = "Rom"
 
     def attack(self, fiende: "Fiende"):
         damage = 2
