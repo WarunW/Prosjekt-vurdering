@@ -5,7 +5,15 @@ class Rom:
         self._gjenstander = []
         self._fiende = None
         self.utganger = []   
+        self._låst = låst
 
+    def erLåst(self):
+        return self._låst
+
+
+    def erÅpen(self):
+        self._låst = False
+        print("Døren åpnes")
 
     def navn(self):
         return self._navn
